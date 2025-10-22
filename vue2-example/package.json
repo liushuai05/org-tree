@@ -1,0 +1,21 @@
+{
+  "name": "vue2-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --config vite.config.lib.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@liushuai05/org-tree": "workspace:*",
+    "@vue/composition-api": "^1.7.2",
+    "vue": "^2.7.16",
+    "vue-demi": "^0.14.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.3.4",
+    "vite": "^7.1.11"
+  }
+}
