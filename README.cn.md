@@ -50,6 +50,10 @@ import '@liushuai05/org-tree/dist/org-tree.css';
 ```
 
 # 贡献
+该项目和 [vue-org-tree](https://github.com/hukaibaihu/vue-org-tree) 项目的作者 [hukaibaihu](https://github.com/hukaibaihu) 对比只实现了 Vue 3 版本，Vue 2 版本兼容和横版架构图，其他功能目前没时间处理。
+欢迎参与贡献，提交 Pull Request 或打开 Issue 来改进这个项目。
+
+
 
 # 开源协议
 MIT License

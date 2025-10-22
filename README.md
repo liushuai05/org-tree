@@ -39,6 +39,8 @@ npm install @liushuai05/org-tree@vue3
 ```
 
 # Contribution
+The project and the author [hukaibaihu](https://github.com/hukaibaihu) of the project [vue-org-tree](https://github.com/hukaibaihu/vue-org-tree) only implemented the Vue 3 version. The Vue 2 version is compatible with horizontal architecture diagrams, and other features are not processed for the time being. 
+Welcome to contribute to this project by submitting Pull Requests or opening Issues to improve it.
 
 # Open Source License
 MIT License
