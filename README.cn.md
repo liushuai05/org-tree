@@ -11,8 +11,15 @@
 # 必须
 - Linux 
 - yarn v4
+```shell 
+# 安装 yarn v4 (我是nvm管理的node版本不加sudo安装出来的不在nvm管理的路径下，没有nvm管理好像不用sudo我没有试过)
+sudo corepack enable
+corepack prepare yarn@stable --activate
+yarn -v
+v4.0.2
 
-
+yarn set version stable
+```
 # 测试(一次只能测试一个版本的组件)
 ```shell
 # vue2
