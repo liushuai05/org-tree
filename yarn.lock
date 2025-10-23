@@ -257,15 +257,12 @@ __metadata:
   resolution: "@liushuai05/org-tree@workspace:org-tree"
   dependencies:
     "@vitejs/plugin-vue": "npm:^6.0.1"
-    "@vitejs/plugin-vue2": "npm:^2.3.4"
     "@vue/compiler-sfc": "npm:^3.5.0"
-    "@vue/composition-api": "npm:1.7.2"
     vite: "npm:^7.1.11"
+    vue: "npm:^3.5.22"
     vue-demi: "npm:^0.14.10"
   peerDependencies:
-    "@vue/composition-api": ^1.7.2
-    vue: ^2.7.16
-    vue-template-compiler: 2.7.16
+    vue: ^3.5.22
   languageName: unknown
   linkType: soft
 
@@ -553,7 +550,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/composition-api@npm:1.7.2, @vue/composition-api@npm:^1.7.2":
+"@vue/composition-api@npm:^1.7.2":
   version: 1.7.2
   resolution: "@vue/composition-api@npm:1.7.2"
   peerDependencies:

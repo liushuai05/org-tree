@@ -6,7 +6,6 @@
 组织树组件是一个基于 Vue 3 和 Vue 2 实现的组织树组件（基于 [vue-org-tree](https://github.com/hukaibaihu/vue-org-tree)进行二次重写）。它可以用于展示组织架构、部门结构等。
 # 依赖
 - Vue 3 and Vue 2
-- Vue-Demi
 
 
 # 图例

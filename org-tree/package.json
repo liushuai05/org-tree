@@ -1,6 +1,6 @@
 {
   "name": "@liushuai05/org-tree",
-  "version": "1.0.36",
+  "version": "1.0.39",
   "main": "dist/org-tree.umd.js",
   "module": "dist/org-tree.es.js",
   "types": "dist/index.d.ts",
@@ -10,25 +10,31 @@
     "url": "https://github.com/liushuai05/org-tree.git"
   },
   "files": [
-    "dist"
+    "dist/**/*",
+    "README.md"
   ],
   "scripts": {
-    "build": "vite build",
-    "publish:lib": "yarn build && npm publish --access public"
+    "build": "vite build --mode vue3",
+    "prepublishOnly": "yarn build",
+    "publish:lib": "npm publish --access public"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.7.2",
-    "vue": "^2.7.16",
-    "vue-template-compiler": "2.7.16"
+    "vue": "^3.5.22"
   },
   "dependencies": {
     "vue-demi": "^0.14.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
-    "@vitejs/plugin-vue2": "^2.3.4",
     "@vue/compiler-sfc": "^3.5.0",
-    "@vue/composition-api": "1.7.2",
-    "vite": "^7.1.11"
-  }
+    "vite": "^7.1.11",
+    "vue": "^3.5.22"
+  },
+  "keywords": [
+    "vue3",
+    "org-tree",
+    "tree",
+    "component"
+  ],
+  "license": "MIT"
 }

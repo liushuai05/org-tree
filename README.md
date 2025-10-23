@@ -7,7 +7,6 @@ The organization tree component is a Vue 3 and Vue 2 implementation of an organi
 
 # Dependencies
 - Vue 3 and Vue 2
-- Vue-Demi
 
 # Legend
 ![default](./doc/default.png)
