@@ -37,8 +37,8 @@ bump_last() {
   local x=$1 y=$2 z=$3
   echo "$x.$y.$((z + 1))"
 }
-cp ./README.md ./org-tree/
-cp ./README.cn.md ./org-tree/
+cp -rf ./README.md ./org-tree/
+cp -rf ./README.cn.md ./org-tree/
 # 进入包目录
 cd org-tree
 
@@ -70,7 +70,7 @@ jq --arg v "$new_vue3_version" '.version = $v' package.vue3.json > temp.json && 
 # 分别发布两个版本并添加对应标签
 # --------------------------
 # 1. 发布vue2版本
-cp package.vue2.json package.json && cp vite.config.vue2.js vite.config.js
+cp -rf package.vue2.json package.json && cp -rf  vite.config.vue2.js vite.config.js
 # 替换outDir为dist
 sed -i.bak "s/outDir:.*/outDir: path.resolve(__dirname, 'dist'),/" vite.config.js && rm -f vite.config.js.bak
 yarn
@@ -78,7 +78,7 @@ yarn publish:lib --tag vue2
 sleep 1
 
 # 2. 发布vue3版本
-cp package.vue3.json package.json && cp vite.config.vue3.js vite.config.js
+cp -rf  package.vue3.json package.json && cp -rf  vite.config.vue3.js vite.config.js
 # 替换outDir为dist
 sed -i.bak "s/outDir:.*/outDir: path.resolve(__dirname, 'dist'),/" vite.config.js && rm -f vite.config.js.bak
 yarn
