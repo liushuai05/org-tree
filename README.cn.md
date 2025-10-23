@@ -32,9 +32,9 @@ yarn dev:vue3
 # 使用
 ```shell
 # vue2 
-npm install @liushuai05/org-tree@vue2
+yarn add @liushuai05/org-tree@vue2 # 或者 yarn add @liushuai05/org-tree@latest
 # vue3 
-npm install @liushuai05/org-tree@vue3
+yarn add @liushuai05/org-tree@vue3
 ```
 
 引入组件

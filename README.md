@@ -33,9 +33,9 @@ yarn dev:vue3
 # Usage
 ```shell
 # vue2 
-npm install @liushuai05/org-tree@vue2
+yarn add @liushuai05/org-tree@vue2 # or yarn add @liushuai05/org-tree@latest
 # vue3 
-npm install @liushuai05/org-tree@vue3
+yarn add @liushuai05/org-tree@vue3
 ```
 # Importing the Component
 ```js

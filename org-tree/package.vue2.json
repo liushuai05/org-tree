@@ -1,6 +1,6 @@
 {
   "name": "@liushuai05/org-tree",
-  "version": "1.0.16",
+  "version": "1.0.18",
   "main": "dist/org-tree.umd.js",
   "module": "dist/org-tree.es.js",
   "types": "dist/index.d.ts",

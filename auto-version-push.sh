@@ -83,6 +83,9 @@ sed -i.bak "s/outDir:.*/outDir: path.resolve(__dirname, 'dist'),/" vite.config.j
 yarn
 yarn publish:lib --tag vue3
 
+npm dist-tag add @liushuai05/org-tree@$new_vue2_version latest
+
+
 # 返回根目录
 cd ..
 
