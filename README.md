@@ -45,7 +45,7 @@ import '@liushuai05/org-tree/dist/org-tree.css';
 // vue3 detail reference vue3-example directory, but the import reference is as follows
 import OrgTree from '@liushuai05/org-tree';
 import '@liushuai05/org-tree/dist/org-tree.css';
-
+```
 # Contribution
 The project and the author [hukaibaihu](https://github.com/hukaibaihu) of the project [vue-org-tree](https://github.com/hukaibaihu/vue-org-tree) only implemented the Vue 3 version. The Vue 2 version is compatible with horizontal architecture diagrams, and other features are not processed for the time being. 
 Welcome to contribute to this project by submitting Pull Requests or opening Issues to improve it.
