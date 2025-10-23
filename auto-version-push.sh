@@ -37,7 +37,8 @@ bump_last() {
   local x=$1 y=$2 z=$3
   echo "$x.$y.$((z + 1))"
 }
-
+cp ./README.md ./org-tree/
+cp ./README.cn.md ./org-tree/
 # 进入包目录
 cd org-tree
 
