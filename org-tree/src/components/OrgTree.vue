@@ -62,7 +62,7 @@ export default defineComponent({
 
     // --- 布局和样式参数 ---
     horizontal: { type: Boolean, default: false },        // 树是否水平布局
-    labelWidth: { type: Number, default: 80 },           // 节点标签宽度
+    labelWidth: { type: Number, default: 0 },           // 节点标签宽度
     collapsable: { type: Boolean, default: true },       // 是否允许折叠子节点
     renderContent: { type: Function, default: null },     // 自定义渲染节点内容的函数
     labelClassName: { type: String, default: '' },        // 节点文本的 CSS 类名

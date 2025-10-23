@@ -26,7 +26,7 @@ export default defineComponent({
     data: { type: Object, required: true },
     props: { type: Object, default: () => ({ label: 'label', children: 'children' }) },
     horizontal: { type: Boolean, default: false },
-    labelWidth: { type: Number, default: 80 },
+    labelWidth: { type: Number, default: 0 },
     collapsable: { type: Boolean, default: true },
     renderContent: { type: Function, default: null },
     labelClassName: { type: String, default: '' },
@@ -76,7 +76,7 @@ export default defineComponent({
           ? props.renderContent(h, data)
           : h(
               'div',
-              { class: ['org-node-label', props.labelClassName], style: { width: props.labelWidth + 'px' } },
+              { class: ['org-node-label', props.labelClassName], style: props.labelWidth>0?{ width: props.labelWidth + 'px' }:{} },
               data[labelKey]
             );
 
