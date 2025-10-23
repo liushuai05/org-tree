@@ -22,9 +22,9 @@
 </style>
 
 <script>
-import OrgTree from '@liushuai05/org-tree/dist/vue2/org-tree.es.js'
-import  '@liushuai05/org-tree/dist/vue2/org-tree.css'
-// import OrgTree from '@plugin-src/components/OrgTree.vue'
+// import OrgTree from '@liushuai05/org-tree/dist/vue2/org-tree.es.js'
+// import  '@liushuai05/org-tree/dist/vue2/org-tree.css'
+import OrgTree from '@plugin-src/components/OrgTree.vue'
 
 console.log('OrgTree:', OrgTree);
 

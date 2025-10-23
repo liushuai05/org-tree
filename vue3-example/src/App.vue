@@ -29,9 +29,9 @@
 
 <script>
 
-import OrgTree from '@liushuai05/org-tree/dist/vue3/org-tree.es.js'
-import  '@liushuai05/org-tree/dist/vue3/org-tree.css'
-// import OrgTree from '@plugin-src/components/OrgTree.vue'
+// import OrgTree from '@liushuai05/org-tree/dist/vue3/org-tree.es.js'
+// import  '@liushuai05/org-tree/dist/vue3/org-tree.css'
+import OrgTree from '@plugin-src/components/OrgTree.vue'
 
 console.log('OrgTree:', OrgTree);
 

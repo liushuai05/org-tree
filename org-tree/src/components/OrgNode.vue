@@ -5,7 +5,7 @@
       <div
         class="org-node-label"
         :class="labelClassName"
-        :style="labelWidth > 0 ? { width: labelWidth + 'px' } : {}"
+        :style="labelWidth > 0 ? { width: labelWidth + 'px' } : {minWidth: '80px'}"
       >
         <!-- 如果传入 renderContent 函数，则执行它 -->
         <component
@@ -28,7 +28,7 @@
         :class="{ expanded: expanded, collapsed: !expanded }"
         @click.stop="toggleExpand"
       >
-        {{ expanded ? '-' : '+' }}
+        <!-- {{ expanded ? '-' : '+' }} -->
       </span>
     </div>
 
@@ -164,8 +164,31 @@ export default {
     z-index: 15;
     font-size: 14px;
     font-weight: bold;
+    transition: transform 0.3s ease-in-out;
 }
-
+.org-expand-btn::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  right: 4px;
+  height: 0;
+  border-top: 1px solid #ccc;
+}
+.org-expand-btn:not(.expanded)::after{
+  content: "";
+  position: absolute;
+ top: 4px;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  border-left: 1px solid #ccc;
+}
+.org-expand-btn:hover{
+  background-color: #e7e8e9;
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+}
 /* -------------------- 垂直树 (vertical) 样式 -------------------- */
 
 .org-node {
@@ -232,16 +255,17 @@ export default {
 /* 调整第一个子节点的连接线 (左半横线 + 垂直线) */
 .org-node-children.vertical > .org-node:first-child::before {
   left: 50%;
-  width: calc(50% + 1px); 
+  width: calc(50% + 0px); 
   border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+  /* border-left: 1px solid #ccc; */
+  border-left: none;
   transform: none;
 }
 
 /* 调整最后一个子节点的连接线 (右半横线 + 垂直线) */
 .org-node-children.vertical > .org-node:last-child::before {
   left: 0;
-  width: calc(50% + 1px); 
+  width: calc(50% + 0px); 
   border-top: 1px solid #ccc;
   border-left: none;
   transform: none;
@@ -332,7 +356,7 @@ export default {
 /* 调整第一个子节点的连接线 (上半竖线 + 水平线) */
 .org-node-children.horizontal > .org-node:first-child::before {
   top: 50%; 
-  height: calc(50% + 1px); 
+  height: calc(50% + 0px); 
   border-left: 1px solid #ccc; 
   border-top: 1px solid #ccc; 
   /* transform: translateY(-50%); */
@@ -341,7 +365,7 @@ export default {
 /* 调整最后一个子节点的连接线 (下半竖线 + 水平线) */
 .org-node-children.horizontal > .org-node:last-child::before {
   top: 0;
-  height: calc(50% + 1px); 
+  height: calc(50% + 0px); 
   border-bottom: 1px solid #ccc; 
   transform: none;
 }
