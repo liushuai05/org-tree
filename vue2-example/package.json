@@ -11,8 +11,7 @@
   "dependencies": {
     "@liushuai05/org-tree": "workspace:*",
     "@vue/composition-api": "^1.7.2",
-    "vue": "^2.7.16",
-    "vue-demi": "^0.14.10"
+    "vue": "^2.7.16"
   },
   "devDependencies": {
     "@vitejs/plugin-vue2": "^2.3.4",

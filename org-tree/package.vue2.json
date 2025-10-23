@@ -12,9 +12,9 @@
     "publish:lib": "yarn build && npm publish --access public"
   },
   "peerDependencies": {
+    "vue-template-compiler": "2.7.16",
     "@vue/composition-api": "^1.7.2",
-    "vue": "^2.7.16 || ^3.4.0",
-    "vue-demi": "^0.14.10"
+    "vue": "^2.7.16"
   },
   "dependencies": {
     "vue-demi": "^0.14.10"
@@ -24,8 +24,6 @@
     "@vitejs/plugin-vue2": "^2.3.4",
     "@vue/compiler-sfc": "^3.5.0",
     "@vue/composition-api": "1.7.2",
-    "vite": "^7.1.11",
-    "vue-demi": "^0.14.10",
-    "vue-template-compiler": "2.7.16"
+    "vite": "^7.1.11"
   }
 }

@@ -11,6 +11,12 @@
         :render-content="renderContent"
         initOrg
       />
+
+      <!-- <component
+          :is="{ render: (h) => renderContent(h,  {
+          id: 0,
+          user: 'XXX科技有限公司'}) }"
+        ></component> -->
     </div>
   </div>
 </template>
@@ -22,8 +28,7 @@
 </style>
 
 <script>
-
-  export default {
+export default {
     data: function () {
       return {
         data: 
@@ -88,43 +93,24 @@
       this.initOrg();
     },
     methods: {
-      renderContent(createElement, data) {
-        console.log("data",data);
-        return createElement(
-          'span',
+      renderContent(h, data) {
+       
+        console.log("data",h);
+        return h(
+          "span",
           {
             style: {
-              width: '100%',
-              height: '100%',
-              display: 'block',
-              // padding:"10px 15px",
-              borderRadius: '3px',
-              textAlign: 'left',
+              width: "100%",
+              display: "block",
+              textAlign: "left",
             },
           },
           [
-            createElement('dd', {}, [
-              createElement('img', {
-                style: {
-                  width: '60px',
-                  height: '60px',
-                },
-                attrs: {
-                  src: data.avatar,
-                },
-              }),
-              
+            h("dd", [
+              h("img", { src: data.avatar, style: { width: "60px", height: "60px" } }),
             ]),
-             data.user &&
-              createElement(
-                'dd',
-                {
-                  style: {
-                    fontSize: '10px',
-                  },
-                },
-                '用户名：' + data.user
-              ),
+            data.user &&
+              h("dd", { style: { fontSize: "10px" } }, "用户名：" + data.user),
           ]
         );
       },

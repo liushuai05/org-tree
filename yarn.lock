@@ -263,7 +263,6 @@ __metadata:
     vue-demi: "npm:^0.14.10"
   peerDependencies:
     vue: ^3.5.22
-    vue-demi: ^0.14.10
   languageName: unknown
   linkType: soft
 
@@ -1801,7 +1800,6 @@ __metadata:
     "@vue/composition-api": "npm:^1.7.2"
     vite: "npm:^7.1.11"
     vue: "npm:^2.7.16"
-    vue-demi: "npm:^0.14.10"
   languageName: unknown
   linkType: soft
 
@@ -1814,7 +1812,6 @@ __metadata:
     less: "npm:^4.4.2"
     vite: "npm:^7.1.11"
     vue: "npm:^3.5.22"
-    vue-demi: "npm:^0.14.10"
   languageName: unknown
   linkType: soft
 

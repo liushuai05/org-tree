@@ -14,8 +14,7 @@
     "publish:lib": "npm publish --access public"
   },
   "peerDependencies": {
-    "vue": "^3.5.22",
-    "vue-demi": "^0.14.10"
+    "vue": "^3.5.22"
   },
   "dependencies": {
     "vue-demi": "^0.14.10"

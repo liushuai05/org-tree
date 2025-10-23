@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "@liushuai05/org-tree": "workspace:*",
-    "vue": "^3.5.22",
-    "vue-demi": "^0.14.10"
+    "vue": "^3.5.22"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",

@@ -1,145 +1,135 @@
 <template>
-  <div class="org-node">
+  <div :class="['org-node', horizontal ? 'horizontal' : 'vertical']">
+    <!-- 节点容器 -->
+    <div class="org-node-container" @click.stop="clickHandler">
+      <div
+        class="org-node-label"
+        :class="labelClassName"
+        :style="labelWidth > 0 ? { width: labelWidth + 'px' } : {}"
+      >
+        <!-- 如果传入 renderContent 函数，则执行它 -->
+        <component
+          v-if="renderContent"
+          :is="{ render: (h) => renderTo(h,data) }"
+        ></component>
+<!-- renderContent(h, data) -->
+        <!-- 否则使用 slot -->
+        <template v-else>
+          <slot name="renderContent" :data="data">
+            {{ data[props.label] }}
+          </slot>
+        </template>
+      </div>
+
+      <!-- 展开/折叠按钮 -->
+      <span
+        v-if="hasChildren && collapsable"
+        class="org-expand-btn"
+        :class="{ expanded: expanded, collapsed: !expanded }"
+        @click.stop="toggleExpand"
+      >
+        {{ expanded ? '-' : '+' }}
+      </span>
     </div>
+
+    <!-- 子节点容器 -->
+    <div
+      v-if="hasChildren && expanded && level < maxLevel"
+      :class="['org-node-children', horizontal ? 'horizontal' : 'vertical']"
+    >
+      <OrgNode
+        v-for="(child, index) in childrenList"
+        :key="child[props.key || 'id'] || index"
+        :data="child"
+        :props="props"
+        :horizontal="horizontal"
+        :label-width="labelWidth"
+        :collapsable="collapsable"
+        :label-class-name="labelClassName"
+        :selected-class-name="selectedClassName"
+        :selected-key="selectedKey"
+        :level="level + 1"
+        :max-level="maxLevel"
+        :render-content="renderContent"
+        @on-node-click="$emit('on-node-click', $event)"
+        @on-expand="$emit('on-expand', $event, child)"
+        @on-node-focus="$emit('on-node-focus', $event)"
+        @on-node-mouseover="$emit('on-node-mouseover', $event)"
+        @on-node-mouseout="$emit('on-node-mouseout', $event)"
+        @on-node-drag-start="$emit('on-node-drag-start', $event)"
+        @on-node-drag-over="$emit('on-node-drag-over', $event)"
+        @on-node-drop="$emit('on-node-drop', $event)"
+      >
+        <template #renderContent="{ data }">
+          <slot name="renderContent" :data="data"></slot>
+        </template>
+      </OrgNode>
+    </div>
+  </div>
 </template>
 
 <script>
-import { defineComponent, h, ref, computed, getCurrentInstance } from 'vue-demi';
-// 注意：如果实际使用中 OrgNode 是自引用的，你需要确保正确的路径。
-// 在本例中，因为组件名为 'OrgNode' 且导出的也是 'OrgNode'，自引用是可行的。
-import OrgNode from './OrgNode.vue'; 
+import { h } from 'vue' 
 
-export default defineComponent({
-  name: 'OrgNode',
-  // 确保在 Vue 3 中使用 emits 声明事件
-  emits: [
-    'on-node-click',
-    'on-expand',
-    'on-node-focus',
-    'on-node-mouseover',
-    'on-node-mouseout',
-    'on-node-drag-start',
-    'on-node-drag-over',
-    'on-node-drop'
-  ],
+export default {
+  name: "OrgNode",
   props: {
     data: { type: Object, required: true },
-    props: { type: Object, default: () => ({ label: 'label', children: 'children' }) },
+    props: {
+      type: Object,
+      default: () => ({ label: "label", children: "children", key: "id" }),
+    },
     horizontal: { type: Boolean, default: false },
     labelWidth: { type: Number, default: 0 },
     collapsable: { type: Boolean, default: true },
-    renderContent: { type: Function, default: null },
-    labelClassName: { type: String, default: '' },
-    selectedClassName: { type: String, default: 'selected' },
+    labelClassName: { type: String, default: "" },
+    selectedClassName: { type: String, default: "selected" },
     selectedKey: { type: [String, Number], default: null },
+
+    // 新增递归层数控制
+    level: { type: Number, default: 0 },
+    maxLevel: { type: Number, default: 10000 },
+
+    // renderContent 函数，用 createElement 生成 VNode
+    renderContent: { type: Function, default: null },
   },
-
-  setup(props, { emit, attrs, slots }) {
-    const instance = getCurrentInstance();
-    // 使用 getCurrentInstance().proxy 来兼容 Vue 2 和 Vue 3 的 $createElement
-    const proxy = instance ? instance.proxy : null;
-
-    const expanded = ref(true);
-    const childrenList = computed(() => props.data[props.props.children] || []);
-
-    const clickHandler = () => emit('on-node-click', props.data);
-    const toggleExpand = (event) => {
-      event.stopPropagation();
-      expanded.value = !expanded.value;
-      emit('on-expand', event, props.data);
+  data() {
+    return {
+      expanded: true,
     };
-    const onDragStart = (e, data) => emit('on-node-drag-start', e, data);
-    const onDragOver = (e, data) => emit('on-node-drag-over', e, data);
-    const onDrop = (e, data) => emit('on-node-drop', e, data);
-
-    // 封装创建 VNode 的逻辑以兼容 Vue 2 (使用 $createElement) 和 Vue 3 (使用 h)
-    const createNodeVNode = (component, nodeProps, childSlots) => {
-      // Vue 2 兼容性
-      if (proxy && proxy.$createElement) {
-        // 在 Vue 2 中，props 需要放在 'props' 键下，事件需要在 'on' 键下
-        const { on, ...restProps } = nodeProps;
-        return proxy.$createElement(component, { props: restProps, on, scopedSlots: childSlots });
+  },
+  computed: {
+    childrenList() {
+      return this.data[this.props.children] || [];
+    },
+    hasChildren() {
+      return this.childrenList.length > 0;
+    },
+  },
+  methods: {
+    isVue2() {
+      // Vue 2 中 Vue 是构造函数（可以 new），且不存在 createApp 方法
+      return typeof Vue === 'function' && typeof Vue.createApp !== 'function';
+    },
+    renderTo(vue2h, data) {
+      if(this.isVue2()){
+        return   this.renderContent(vue2h, data)
+      }else{
+        return   this.renderContent(h, data)
       }
-      // Vue 3 默认逻辑
-      return h(component, nodeProps, childSlots);
-    };
-
-    return () => {
-      const { data, props: { label: labelKey } } = props;
-      const children = childrenList.value;
-      const isExpanded = expanded.value;
-      const hasChildren = children.length > 0;
-      
-      // 节点内容 VNode
-      const nodeContentVNode =
-        props.renderContent && typeof props.renderContent === 'function'
-          ? props.renderContent(h, data)
-          : h(
-              'div',
-              { class: ['org-node-label', props.labelClassName], style: props.labelWidth>0?{ width: props.labelWidth + 'px' }:{} },
-              data[labelKey]
-            );
-
-      // 展开/折叠按钮 VNode
-      let expandButtonVNode = null;
-      if (hasChildren && props.collapsable) {
-        const btnProps = { 
-          class: ['org-expand-btn', isExpanded ? 'expanded' : 'collapsed'] 
-        };
-        // 兼容 Vue 2/3 的事件绑定
-        if (proxy && proxy.$createElement) btnProps.on = { click: toggleExpand };
-        else btnProps.onClick = toggleExpand;
-
-        expandButtonVNode = h('span', btnProps, isExpanded ? '-' : '+');
-      }
-
-      // 节点容器 VNode
-      const nodeContainer = h('div', { class: 'org-node-container', onClick: clickHandler, ...attrs }, [nodeContentVNode, expandButtonVNode].filter(Boolean));
-
-      let childrenWrapper = null;
-      if (hasChildren && isExpanded) {
-        // 递归创建子节点 VNode
-        const childrenVNodes = children.map(child =>
-          createNodeVNode(
-            OrgNode, // 自引用组件
-            {
-              data: child,
-              props: props.props,
-              horizontal: props.horizontal,
-              labelWidth: props.labelWidth,
-              collapsable: props.collapsable,
-              renderContent: props.renderContent,
-              labelClassName: props.labelClassName,
-              selectedClassName: props.selectedClassName,
-              selectedKey: props.selectedKey,
-              // 将事件转发给子组件
-              on: {
-                'on-node-click': (d) => emit('on-node-click', d),
-                'on-expand': (e, d) => emit('on-expand', e, d),
-                'on-node-focus': (e, d) => emit('on-node-focus', e, d),
-                'on-node-mouseover': (e, d) => emit('on-node-mouseover', e, d),
-                'on-node-mouseout': (e, d) => emit('on-node-mouseout', e, d),
-                'on-node-drag-start': (e, d) => onDragStart(e, d),
-                'on-node-drag-over': (e, d) => onDragOver(e, d),
-                'on-node-drop': (e, d) => onDrop(e, d),
-              },
-            },
-            slots
-          )
-        );
-
-        // 根据 horizontal prop 动态添加类 'horizontal' 或 'vertical'
-        childrenWrapper = h('div', { 
-            class: ['org-node-children', props.horizontal ? 'horizontal' : 'vertical'] 
-        }, childrenVNodes);
-      }
-
-      // 最外层节点 VNode
-      return h('div', { class: ['org-node', props.horizontal ? 'horizontal' : 'vertical'] }, [nodeContainer, childrenWrapper].filter(Boolean));
-    };
-  }
-});
+    },
+    clickHandler() {
+      this.$emit("on-node-click", this.data);
+    },
+    toggleExpand() {
+      this.expanded = !this.expanded;
+      this.$emit("on-expand", this.expanded, this.data);
+    },
+  },
+};
 </script>
+
+
 
 <style scoped>
 /* -------------------- 通用样式 -------------------- */

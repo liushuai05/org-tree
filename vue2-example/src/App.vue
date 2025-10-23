@@ -8,8 +8,7 @@
         :data="data"
         collapsable
         @on-expand="onExpand"
-        :render-content="renderContent"
-        initOrg
+        :render-content="renderContent" 
       />
     </div>
   </div>
@@ -23,8 +22,15 @@
 </style>
 
 <script>
+// import OrgTree from '@liushuai05/org-tree/dist/vue2/org-tree.es.js'
+// import  '@liushuai05/org-tree/dist/vue2/org-tree.css'
+import OrgTree from '@plugin-src/components/OrgTree.vue'
 
   export default {
+    name: 'App',
+    components: {
+      OrgTree,
+    },
     data: function () {
       return {
         data: {
@@ -34,6 +40,7 @@
             {
               id: 2,
               label: '产品研发部',
+              user: '张三',
               children: [
                 {
                   id: 5,
@@ -88,7 +95,54 @@
       this.initOrg();
     },
     methods: {
-      
+      renderContent(createElement, data) {
+        return createElement(
+          'span',
+          {
+            style: {
+              width: '100%',
+              height: '100%',
+              display: 'block',
+              // padding:"10px 15px",
+              borderRadius: '3px',
+              textAlign: 'left',
+            },
+          },
+          [
+            // createElement('dd', {}, [
+            //   createElement('img', {
+            //     style: {
+            //       width: '60px',
+            //       height: '60px',
+            //     },
+            //     attrs: {
+            //       src: data.avatar,
+            //     },
+            //   }),
+            // ]),
+            data.label &&
+              createElement(
+                'dd',
+                {
+                  style: {
+                    fontSize: '10px',
+                  },
+                },
+                 data.label
+              ),
+             data.user &&
+              createElement(
+                'dd',
+                {
+                  style: {
+                    fontSize: '10px',
+                  },
+                },
+                '用户名：' + data.user
+              ),
+          ]
+        );
+      },
       // NodeClick(e,data){
       //     top.location = '{php echo webUrl('relationship/diagram')}' +'&agentid='+ data.id;
       // },
