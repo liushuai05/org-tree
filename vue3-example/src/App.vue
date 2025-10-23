@@ -28,7 +28,19 @@
 </style>
 
 <script>
+
+import OrgTree from '@liushuai05/org-tree/dist/vue3/org-tree.es.js'
+import  '@liushuai05/org-tree/dist/vue3/org-tree.css'
+// import OrgTree from '@plugin-src/components/OrgTree.vue'
+
+console.log('OrgTree:', OrgTree);
+
+
 export default {
+  name: 'App',
+  components: {
+    OrgTree,
+  },
     data: function () {
       return {
         data: 
@@ -83,10 +95,6 @@ export default {
           ],
         },
       };
-    },
-    components: {
-      // 将组建加入组建库
-      // 'my-component': 'url:./component/my-component.vue'
     },
     created() {
       // this.toggleExpand(this.data, true)

@@ -23,11 +23,9 @@ yarn add @liushuai05/org-tree@vue3
 # Importing the Component
 ```js
 // vue2 detail reference vue2-example directory, but the import reference is as follows
-//  know why, now you must import in main.js, otherwise it will report an error
 import OrgTree from '@liushuai05/org-tree';
 import '@liushuai05/org-tree/dist/org-tree.css';
 // vue3 detail reference vue3-example directory, but the import reference is as follows
-//  know why, now you must import in main.js, otherwise it will report an error
 import OrgTree from '@liushuai05/org-tree';
 import '@liushuai05/org-tree/dist/org-tree.css';
 ```
