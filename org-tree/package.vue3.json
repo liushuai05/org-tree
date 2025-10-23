@@ -4,6 +4,11 @@
   "main": "dist/org-tree.umd.js",
   "module": "dist/org-tree.es.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/liushuai05/org-tree",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liushuai05/org-tree.git"
+  },
   "files": [
     "dist/**/*",
     "README.md"
