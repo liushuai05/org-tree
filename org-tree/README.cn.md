@@ -24,12 +24,10 @@ yarn add @liushuai05/org-tree@vue3
 引入组件
 ```js
 // vue2 详情参考 vue2-example 目录  ，但引入参考如下  
-// 不知道什么原因，现在只能在main.js下进行引入，否则会报错
 import OrgTree from '@liushuai05/org-tree';
 import '@liushuai05/org-tree/dist/org-tree.css';
 
 // vue3 详情参考 vue3-example 目录 ，但引入参考如下
-// 不知道什么原因，现在只能在main.js下进行引入，否则会报错
 import OrgTree from '@liushuai05/org-tree';
 import '@liushuai05/org-tree/dist/org-tree.css';
 
